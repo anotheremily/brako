@@ -2,7 +2,7 @@ echo(version=version());
 
 // units in mm
 BASE_WIDTH = 113.0;
-BASE_HEIGHT = 53.0;
+BASE_HEIGHT = 43.0;
 BASE_WALL = 4.0;
 INNER_RIDGE_HEIGHT = 6.0;
 INNER_RIDGE_WIDTH = 2.0;
@@ -24,7 +24,7 @@ STEPPER_SCREW_SIZE = 3.1; // m3
 STEPPER_SHAFT = 7.0;
 
 ACCESS_HOLE_WIDTH = 20;
-ACCESS_HOLE_Z_OFFSET = 20;
+ACCESS_HOLE_Z_OFFSET = 15;
 
 // support 
 difference() {

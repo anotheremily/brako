@@ -13,7 +13,7 @@ PLATFORM_HEIGHT = 4.0;
 SUPPORT_WIDTH = BASE_WIDTH - INNER_RIDGE_WIDTH * 4;
 SUPPORT_HEIGHT = 20.0;
 
-ROD_WIDTH = 8.1; // m8 
+ROD_WIDTH = 8.5; // m8 
 ROD_DEPTH = 10.0;
 ROD_PLACEMENT = (BASE_WIDTH - INNER_RIDGE_WIDTH * 4) / 4;
 
@@ -22,7 +22,7 @@ BEARING_WIDTH = 15.2;
 ROD_SHAFT_HEIGHT = BEARING_HEIGHT;
 ROD_SHAFT_WIDTH = BEARING_WIDTH + 4;
 
-STEPPER_ROD_NUT_WIDTH = 13.0;
+STEPPER_ROD_NUT_WIDTH = 16.0;
 STEPPER_ROD_HEIGHT = 5.0;
 STEPPER_ROD_NUT_WALL = STEPPER_ROD_NUT_WIDTH + 4;
 
@@ -61,7 +61,7 @@ difference() {
 }
 
 // rod support + bearing housing
-translate([0, 0, PLATFORM_HEIGHT])
+translate([0, 0, PLATFORM_HEIGHT]) {
     translate([ROD_PLACEMENT, ROD_PLACEMENT, 0])
         difference() {
             cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_SHAFT_WIDTH);
@@ -79,10 +79,11 @@ translate([0, 0, PLATFORM_HEIGHT])
             cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_SHAFT_WIDTH);
             cylinder(h=ROD_SHAFT_HEIGHT, d=BEARING_WIDTH);
         }
-        
+}
+
  // m8 stepper rod
- translate([0, 0, PLATFORM_HEIGHT])
- rotate([0, 0, 15])
+translate([0, 0, PLATFORM_HEIGHT])
+rotate([0, 0, 15])
      difference() {
         cylinder($fn=6, h=STEPPER_ROD_HEIGHT, d=STEPPER_ROD_NUT_WALL);
         cylinder($fn=6, h=STEPPER_ROD_HEIGHT, d=STEPPER_ROD_NUT_WIDTH);

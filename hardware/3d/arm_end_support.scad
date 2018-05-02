@@ -31,65 +31,31 @@ STEPPER_SCREW_SPACE = 31.0;
 STEPPER_HALF_SPACE = STEPPER_SCREW_SPACE / 2;
 STEPPER_SCREW_SIZE = 3.1; // m3
 STEPPER_SHAFT = 7.0;
+STEPPER_HOUSING_WIDTH = STEPPER_WIDTH + BASE_WALL * 2;
+STEPPER_HOUSING_DEPTH = STEPPER_HEIGHT;
 
-ARM_ROD_SUPPORT_DEPTH = ROD_SHAFT_HEIGHT;
-ARM_ROD_SUPPORT_HEIGHT = ROD_SHAFT_WIDTH;
-ARM_ROD_SUPPORT_WIDTH = ROD_SHAFT_WIDTH;
+BEARING_HEIGHT = 25.0;
+BEARING_WIDTH = 15.2;
 
-// rod support + bearing housing
-    // middle support
-    translate([ROD_PLACEMENT / 2, 0, 0]) {
-        difference() {
-            union() {
-                cube([ARM_ROD_SUPPORT_WIDTH, ARM_ROD_SUPPORT_HEIGHT, ARM_ROD_SUPPORT_DEPTH]);
-                translate([ARM_ROD_SUPPORT_WIDTH / 2, ARM_ROD_SUPPORT_HEIGHT, 0]) {
-                    cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_SHAFT_WIDTH);
-                };
-                translate([0, ARM_ROD_SUPPORT_WIDTH, 0]) {
-                    cube([ARM_ROD_SUPPORT_WIDTH, ARM_ROD_SUPPORT_HEIGHT, ARM_ROD_SUPPORT_DEPTH]);
-                }
-            }
-            translate([ARM_ROD_SUPPORT_WIDTH / 2, ARM_ROD_SUPPORT_HEIGHT, 0]) {
-                cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_WIDTH);
-            }
-        }
+// middle support
+difference() {
+    translate([0, 12, 0]) {        
+        cylinder(h=BEARING_HEIGHT, d=70);
     }
-
-    translate([-1 * ROD_PLACEMENT, 0, 0]) {
-        difference() {
-            union() {
-                cube([ARM_ROD_SUPPORT_WIDTH, ARM_ROD_SUPPORT_HEIGHT, ARM_ROD_SUPPORT_DEPTH]);
-                translate([ARM_ROD_SUPPORT_WIDTH / 2, ARM_ROD_SUPPORT_HEIGHT, 0])
-                    cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_SHAFT_WIDTH);
-                translate([0, ARM_ROD_SUPPORT_WIDTH, 0]) {
-                    cube([ARM_ROD_SUPPORT_WIDTH, ARM_ROD_SUPPORT_HEIGHT, ARM_ROD_SUPPORT_DEPTH]);
-                }
-            }
-            translate([ARM_ROD_SUPPORT_WIDTH / 2, ARM_ROD_SUPPORT_HEIGHT, 0])
-                cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_WIDTH);
-        }
+    
+    translate([-1 * ROD_PLACEMENT + ROD_SHAFT_WIDTH + 1.75 + -1 * STEPPER_HOUSING_WIDTH / 2 + STEPPER_HOUSING_WIDTH / 2, 
+              ROD_SHAFT_HEIGHT + STEPPER_HOUSING_WIDTH / 2 - ROD_SHAFT_WIDTH, 
+              0]) {
+        // stepper shaft
+        cylinder(h=BEARING_HEIGHT, d=BEARING_WIDTH);
     }
     
     // middle support
-    translate([-1 * ROD_PLACEMENT / 2 + ARM_ROD_SUPPORT_WIDTH / 2 + 1, 0, 0]) {
-        difference() {
-            union() {
-                cube([ARM_ROD_SUPPORT_WIDTH, ARM_ROD_SUPPORT_HEIGHT, ARM_ROD_SUPPORT_DEPTH]);
-                translate([ARM_ROD_SUPPORT_WIDTH / 2, ARM_ROD_SUPPORT_HEIGHT, 0]) {
-                    cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_SHAFT_WIDTH);
-                }
-                translate([0, ARM_ROD_SUPPORT_WIDTH, 0]) {
-                    cube([ARM_ROD_SUPPORT_WIDTH, ARM_ROD_SUPPORT_HEIGHT, ARM_ROD_SUPPORT_DEPTH]);
-                }
-            }
-            translate([ARM_ROD_SUPPORT_WIDTH / 2, ARM_ROD_SUPPORT_HEIGHT, 0]) {
-                cylinder(h=ROD_SHAFT_HEIGHT, d=ROD_WIDTH);
-            }
-        }
+    translate([ROD_PLACEMENT / 2 + ROD_SHAFT_WIDTH / 2, 0, 0]) {
+        cylinder(h=BEARING_HEIGHT, d=ROD_WIDTH);
     }
-    
-    translate([-1.2 * ARM_ROD_SUPPORT_WIDTH, 0, 0])
-        cube([ARM_ROD_SUPPORT_WIDTH / 1.2, ARM_ROD_SUPPORT_WIDTH * 2, ARM_ROD_SUPPORT_DEPTH]);
-    
-    translate([.3 * ARM_ROD_SUPPORT_WIDTH, 0, 0])
-        cube([ARM_ROD_SUPPORT_WIDTH / 1.2, ARM_ROD_SUPPORT_WIDTH * 2, ARM_ROD_SUPPORT_DEPTH]);
+
+    translate([-1 * ROD_PLACEMENT + ROD_SHAFT_WIDTH / 2, 0, 0]) {
+        cylinder(h=BEARING_HEIGHT, d=ROD_WIDTH);
+    }
+}

@@ -43,7 +43,7 @@ difference() {
         cylinder(h=BEARING_HEIGHT, d=70);
     }
     
-    translate([-1 * ROD_PLACEMENT + ROD_SHAFT_WIDTH + 1.75 + -1 * STEPPER_HOUSING_WIDTH / 2 + STEPPER_HOUSING_WIDTH / 2, 
+    translate([-1 * ROD_PLACEMENT + ROD_SHAFT_WIDTH + 1.75 + -1 * STEPPER_HOUSING_WIDTH / 4 + STEPPER_HOUSING_WIDTH / 2, 
               ROD_SHAFT_HEIGHT + STEPPER_HOUSING_WIDTH / 2 - ROD_SHAFT_WIDTH, 
               0]) {
         // stepper shaft
